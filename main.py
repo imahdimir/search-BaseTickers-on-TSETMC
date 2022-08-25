@@ -31,7 +31,7 @@ title = 'Title'
 mkt = 'Market'
 
 idcols = {
-    'ID-1' : 1 ,
+    'ID-1' : '' ,
     'ID-2' : 2 ,
     'ID-3' : 3 ,
     'ID-4' : 4 ,
@@ -52,6 +52,7 @@ def main() :
   bdf = bdf[[btic]]
   ##
   sdf = pd.DataFrame()
+  ##
 
   for _ , row in bdf.iterrows() :
     _sdf = mf.search_tsetmc(row[btic])
@@ -105,6 +106,8 @@ def main() :
 
   ##
   mf.save_as_prq_wo_index(idf , 'temp1.prq')
+  ##
+  idf = pd.read_parquet('temp1.prq')
 
   ##
   msk = idf.duplicated(subset = [ticn , 'Market' , name , 'IsActive'] ,
